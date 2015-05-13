@@ -40,11 +40,11 @@ angular
       if(SessionService.isToken().isLoggedIn)
       {
         var shouldGoToMain = fromState.name === ""
-          && toState.name !== "main" ;
+          && toState.name !== "main.dashboard" ;
 
         if (shouldGoToMain)
         {
-          $state.go('main');
+          $state.go('main.dashboard');
           event.preventDefault();
         }
         return;
@@ -64,11 +64,30 @@ angular
       .state('main', {
         url: '/main',
         templateUrl: 'views/main.html',
-        data : {requireLogin : true }
+        data : {requireLogin : true },
+        controller: 'MainCtrl'
+      })
+      .state('main.dashboard', {
+        url: '/dashboard',
+        templateUrl: 'views/states/dashboard.html',
+        data : {requireLogin : true },
+        controller: 'DashboardCtrl'
+      })
+      .state('main.menu', {
+        url: '/menu',
+        templateUrl: 'views/states/menu.html',
+        data : {requireLogin : true },
+        controller: 'MenuCtrl'
+      })
+      .state('main.item', {
+        url: '/menu/:itemId',
+        templateUrl: 'views/states/item.html',
+        data : {requireLogin : true },
+        controller: 'ItemCtrl'
       })
     ;
 
-    $urlRouterProvider.otherwise('/main');
+    $urlRouterProvider.otherwise('/main/dashboard');
 
     // Use x-www-form-urlencoded Content-Type
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
