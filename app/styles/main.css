@@ -47,3 +47,10 @@
   padding: 8px;
   overflow: hidden;
 }
+.add-new-category {
+  height: 41px;
+  margin: 0 15px;
+}
+.add-new-category button i {
+  color: #fff;
+}

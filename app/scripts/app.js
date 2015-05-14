@@ -93,9 +93,24 @@ angular
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
     $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded';
     $httpProvider.defaults.headers.common['Content-Type'] = $httpProvider.defaults.headers.post['Content-Type'];
+    $httpProvider.interceptors.push(function($q, localStorageService) {
+      return {
+        'request': function(config) {
+
+          config.headers = config.headers || {};
+          if (localStorageService.get('user')) {
+            config.headers.Authorization = 'Bearer ' + localStorageService.get('user').token;
+          }
+          return config;
+        }
+      };
+    });
   })
 
   .controller('AppCtrl', function ($scope, SessionService) {
     SessionService.isToken();
-  });
+
+  })
+
+
 

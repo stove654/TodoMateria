@@ -87,92 +87,27 @@
           </div>
         </div>
         <div class="portlet-body">
-          <div >
-            <div class="menu-col-3">
-              <div class="menu-item" style="background-image: url('./images/1.jpg')" vertical layout end-justified>
-                <div class="menu-item-info" horizontal layout>
-                  <div class="menu-item-name padding-10" flex>
-                    food one
-                  </div>
-                  <div class="menu-item-price padding-10">
-                    {{19.9 | currency}}
-                  </div>
-                </div>
+
+          <tabset>
+
+            <tab heading="{{item.name}}" ng-repeat="item in allFoods">Justified content</tab>
+
+            <li class="add-new-category">
+              <div horizontal layout center ng-hide="addNewCategory">
+                <a class="btn btn-icon-only green" ng-click="addNewCategory = true">
+                  <i class="fa fa-plus"></i>
+                </a>
               </div>
-            </div>
-            <div class="menu-col-3">
-              <div class="menu-item" style="background-image: url('./images/1.jpg')" vertical layout end-justified>
-                <div class="menu-item-info" horizontal layout>
-                  <div class="menu-item-name padding-10" flex>
-                    food one
-                  </div>
-                  <div class="menu-item-price padding-10">
-                    {{19.9 | currency}}
-                  </div>
+              <form class="form-inline" ng-show="addNewCategory">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="exampleInputName2" placeholder="Name category" ng-model="category.name">
                 </div>
-              </div>
-            </div>
-            <div class="menu-col-3">
-              <div class="menu-item" style="background-image: url('./images/1.jpg')" vertical layout end-justified>
-                <div class="menu-item-info" horizontal layout>
-                  <div class="menu-item-name padding-10" flex>
-                    food one
-                  </div>
-                  <div class="menu-item-price padding-10">
-                    {{19.9 | currency}}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="menu-col-3">
-              <div class="menu-item" style="background-image: url('./images/1.jpg')" vertical layout end-justified>
-                <div class="menu-item-info" horizontal layout>
-                  <div class="menu-item-name padding-10" flex>
-                    food one
-                  </div>
-                  <div class="menu-item-price padding-10">
-                    {{19.9 | currency}}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="menu-col-3">
-              <div class="menu-item" style="background-image: url('./images/1.jpg')" vertical layout end-justified>
-                <div class="menu-item-info" horizontal layout>
-                  <div class="menu-item-name padding-10" flex>
-                    food one
-                  </div>
-                  <div class="menu-item-price padding-10">
-                    {{19.9 | currency}}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="menu-col-3">
-              <div class="menu-item" style="background-image: url('./images/1.jpg')" vertical layout end-justified>
-                <div class="menu-item-info" horizontal layout>
-                  <div class="menu-item-name padding-10" flex>
-                    food one
-                  </div>
-                  <div class="menu-item-price padding-10">
-                    {{19.9 | currency}}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="menu-col-3">
-              <div class="menu-item" style="background-image: url('./images/1.jpg')" vertical layout end-justified>
-                <div class="menu-item-info" horizontal layout>
-                  <div class="menu-item-name padding-10" flex>
-                    food one
-                  </div>
-                  <div class="menu-item-price padding-10">
-                    {{19.9 | currency}}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+                <button type="button" class="btn btn-default green" ng-click="createCategory()">Submit</button>
+                <button type="button" class="btn btn-default red"><i class="fa fa-times"></i></button>
+              </form>
+            </li>
+          </tabset>
+
         </div>
       </div>
       <!-- End: life time stats -->
