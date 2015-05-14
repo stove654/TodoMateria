@@ -9,5 +9,5 @@
  */
 angular.module('resAdminApp')
   .constant('AppConfig', {
-    baseUrl: 'http://localhost:8080/api/'
+    baseUrl: 'http://localhost:8080/'
   });

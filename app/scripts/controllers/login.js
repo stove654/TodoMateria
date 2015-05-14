@@ -11,6 +11,9 @@ angular.module('resAdminApp')
   .controller('LoginCtrl', function ($scope, AppConfig, loginService, localStorageService, SessionService, $state) {
     $scope.user = {};
 
+    $scope.settingLogin = {};
+    $scope.settingLogin.register = false;
+    $scope.register = {};
     $scope.login = function () {
       loginService.login(angular.copy($scope.user))
         .then(function(data) {
@@ -22,5 +25,14 @@ angular.module('resAdminApp')
 
         });
     };
+
+    $scope.userRegister = function () {
+      loginService.create(angular.copy($scope.register))
+        .then(function(data) {
+          console.log(data)
+        }, function(error) {
+
+        });
+    }
 
   });
