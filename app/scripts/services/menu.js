@@ -24,5 +24,11 @@ angular.module('resAdminApp')
       });
     };
 
+    api.deleteCategory = function (id) {
+      return $http.delete(AppConfig.baseUrl + 'api/categories/' + id).then(function(data) {
+        return data.data;
+      });
+    };
+
     return api;
   });

@@ -8,7 +8,7 @@
  * Controller of the resAdminApp
  */
 angular.module('resAdminApp')
-  .controller('MenuCtrl', function ($scope, $modal, MenuFactory) {
+  .controller('MenuCtrl', function ($scope, $modal, MenuFactory, $state) {
 
     $scope.addNewCategory = false;
     $scope.category = {};
@@ -22,17 +22,6 @@ angular.module('resAdminApp')
     }
     _init();
 
-    $scope.openItem = function () {
-      var modalInstance = $modal.open({
-        animation: true,
-        templateUrl: 'views/modal/item.html',
-        controller: 'ItemCtrl',
-        size: 'lg',
-        scope: $scope,
-        windowClass: 'modal-override'
-      });
-    };
-
     $scope.createCategory = function () {
       MenuFactory.createCategory(angular.copy($scope.category))
         .then(function(data) {
@@ -42,5 +31,17 @@ angular.module('resAdminApp')
         }, function(error) {
           $scope.addNewCategory = false;
         });
+    };
+
+    $scope.deleteCategory = function (id, index) {
+      MenuFactory.deleteCategory(id)
+        .then(function(data) {
+          $scope.allFoods.splice(index, 1);
+        }, function(error) {
+        });
+    };
+
+    $scope.createFood = function () {
+      $state.go('main.item', {Id: 'new-food'});
     }
   });

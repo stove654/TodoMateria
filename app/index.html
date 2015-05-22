@@ -54,6 +54,9 @@
     <!-- endbuild -->
 
     <!-- build:js(.) scripts/vendor.js -->
+
+
+
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
@@ -70,19 +73,25 @@
     <script src="bower_components/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
     <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
     <!-- endbower -->
+
+    <script src="./scripts/vendor/ng-file-upload-shim.min.js"></script>
+    <script src="./scripts/vendor/ng-file-upload.min.js"></script>
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/services/appconfig.js"></script>
-        <script src="scripts/services/login.js"></script>
-        <script src="scripts/services/session.js"></script>
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/controllers/dashboard.js"></script>
         <script src="scripts/controllers/menu.js"></script>
         <script src="scripts/controllers/item.js"></script>
+        <script src="scripts/controllers/media.js"></script>
+
+        <script src="scripts/services/appconfig.js"></script>
+        <script src="scripts/services/login.js"></script>
+        <script src="scripts/services/session.js"></script>
         <script src="scripts/services/menu.js"></script>
+        <script src="scripts/services/media.js"></script>
         <!-- endbuild -->
 </body>
 </html>

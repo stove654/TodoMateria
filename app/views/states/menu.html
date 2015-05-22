@@ -51,7 +51,7 @@
             <span class="caption-helper">manage menus...</span>
           </div>
           <div class="actions">
-            <a class="btn btn-circle btn-default" ng-click="openItem()">
+            <a class="btn btn-circle btn-default" ng-click="createFood()">
               <i class="fa fa-plus"></i>
 								<span class="hidden-480">
 								New Item </span>
@@ -90,7 +90,12 @@
 
           <tabset>
 
-            <tab heading="{{item.name}}" ng-repeat="item in allFoods">Justified content</tab>
+            <tab ng-repeat="item in allFoods" class="tabs-category">
+              <tab-heading>
+                {{item.name}} <i class="glyphicon glyphicon-remove" ng-click="deleteCategory(item._id, $index)"></i>
+              </tab-heading>
+              Justified content
+            </tab>
 
             <li class="add-new-category">
               <div horizontal layout center ng-hide="addNewCategory">

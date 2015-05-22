@@ -1,0 +1,227 @@
+<div class="page-content page-item">
+  <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+  <div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+          <h4 class="modal-title">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          Widget settings form goes here
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn blue">Save changes</button>
+          <button type="button" class="btn default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+  <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+  <!-- BEGIN PAGE HEADER-->
+  <!-- BEGIN PAGE HEAD -->
+  <div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+      <h1>Product Edit <small>create & edit product</small></h1>
+    </div>
+    <!-- END PAGE TITLE -->
+  </div>
+  <!-- END PAGE HEAD -->
+  <!-- BEGIN PAGE BREADCRUMB -->
+  <ul class="page-breadcrumb breadcrumb">
+    <li>
+      <a href="index.html">Home</a>
+      <i class="fa fa-circle"></i>
+    </li>
+    <li>
+      <a href="#">eCommerce</a>
+      <i class="fa fa-circle"></i>
+    </li>
+    <li>
+      <a href="#">Product Edit</a>
+    </li>
+  </ul>
+  <!-- END PAGE BREADCRUMB -->
+  <!-- END PAGE HEADER-->
+  <!-- BEGIN PAGE CONTENT-->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="portlet light">
+        <div class="portlet-title">
+          <div class="caption">
+            <i class="icon-basket font-green-sharp"></i>
+                <span class="caption-subject font-green-sharp bold uppercase">
+                Edit Product </span>
+            <span class="caption-helper">Man Tops</span>
+          </div>
+          <div class="actions btn-set">
+            <button type="button" name="back" class="btn btn-default btn-circle" ng-click="goMenu()"><i class="fa fa-angle-left"></i> Back</button>
+            <button class="btn btn-default btn-circle "><i class="fa fa-reply"></i> Reset</button>
+            <button class="btn green-haze btn-circle"><i class="fa fa-check"></i> Save</button>
+            <button class="btn green-haze btn-circle"><i class="fa fa-check-circle"></i> Save & Continue Edit</button>
+            <div class="btn-group">
+              <a class="btn yellow btn-circle" href="javascript:;" data-toggle="dropdown">
+                <i class="fa fa-share"></i> More <i class="fa fa-angle-down"></i>
+              </a>
+              <ul class="dropdown-menu pull-right">
+                <li>
+                  <a href="javascript:;">
+                    Duplicate </a>
+                </li>
+                <li>
+                  <a href="javascript:;">
+                    Delete </a>
+                </li>
+                <li class="divider">
+                </li>
+                <li>
+                  <a href="javascript:;">
+                    Print </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="portlet-body">
+
+          <tabset>
+            <tab heading="General">
+              <div class="form-body">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                  <tr role="row" class="heading">
+                    <th width="15%">
+                      Image
+                    </th>
+                    <th width="85%">
+                      Label
+                    </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>
+                      <a class="fancybox-button" data-rel="fancybox-button">
+                        <img class="img-responsive" src="./images/img1.png" alt="">
+                      </a>
+                    </td>
+                    <td>
+                      <input type="text" class="form-control" name="product[images][1][label]" value="Thumbnail image">
+                      <div id="tab_images_uploader_container" class="text-align-reverse margin-bottom-10">
+                        <button id="tab_images_uploader_pickfiles" class="btn yellow" ng-click="openMedia('lg')">
+                          <i class="fa fa-plus"></i> Select Files
+                        </button>
+                        <button type="button" id="tab_images_uploader_uploadfiles" class="btn green">
+                          <i class="fa fa-share"></i> Upload Files
+                          <input type="file" style="visibility: hidden; position: absolute; left: -9999px"/>
+                        </button>
+                      </div>
+                    </td>
+
+                  </tr>
+                  </tbody>
+                </table>
+              <div class="form-group">
+                <label class="col-md-2 control-label">Name: <span class="required">
+                        * </span>
+                </label>
+                <div class="col-md-10">
+                  <input type="text" class="form-control" name="product[name]" placeholder="">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-2 control-label">Price: <span class="required">
+                      * </span>
+                </label>
+                <div class="col-md-10">
+                  <input type="text" class="form-control" name="product[price]" placeholder="">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-2 control-label">Description:
+                </label>
+                <div class="col-md-10">
+                  <textarea class="form-control" name="product[description]"></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-2 control-label">Categories: <span class="required">
+                        * </span>
+                </label>
+                <div class="col-md-10">
+                  <div class="form-control height-auto">
+                    <div class="scroller" style="max-height: 150px; overflow-y: scroll;">
+                      <ul class="list-unstyled">
+                        <li>
+                          <label><input type="checkbox" name="product[categories][]" value="1">Mens</label>
+                        </li>
+                        <li>
+                          <label><input type="checkbox" name="product[categories][]" value="1">Football Shirts</label>
+                        </li>
+                        <li>
+                          <label><input type="checkbox" name="product[categories][]" value="1">Brands</label>
+                        </li>
+                        <li>
+                          <label><input type="checkbox" name="product[categories][]" value="1">Mens</label>
+                        </li>
+                        <li>
+                          <label><input type="checkbox" name="product[categories][]" value="1">Football Shirts</label>
+                        </li>
+                        <li>
+                          <label><input type="checkbox" name="product[categories][]" value="1">Brands</label>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                          <span class="help-block">
+                          select one or more categories </span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-2 control-label">Available Date:
+                </label>
+                <div class="col-md-10">
+                  <div class="input-group input-large date-picker input-daterange" data-date="10/11/2012" data-date-format="mm/dd/yyyy">
+                    <input type="text" class="form-control" name="product[available_from]">
+                            <span class="input-group-addon">
+                            to </span>
+                    <input type="text" class="form-control" name="product[available_to]">
+                  </div>
+                          <span class="help-block">
+                          availability daterange. </span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-2 control-label">SKU:
+                </label>
+                <div class="col-md-10">
+                  <input type="text" class="form-control" name="product[sku]" placeholder="">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-2 control-label">Status:
+                </label>
+                <div class="col-md-10">
+                  <select class="table-group-action-input form-control input-medium" name="product[status]">
+                    <option value="">Select...</option>
+                    <option value="1">Published</option>
+                    <option value="0">Not Published</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            </tab>
+            <tab heading="Images">Images</tab>
+            <tab heading="Reviews">Reviews</tab>
+          </tabset>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END PAGE CONTENT-->
+</div>

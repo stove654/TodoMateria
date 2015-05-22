@@ -1,0 +1,22 @@
+<div class="modal-header" style="overflow: hidden">
+  <h3 class="modal-title pull-left">Media Manager</h3>
+  <button id="tab_images_uploader_pickfiles" class="btn default pull-right" ngf-select ng-model="files" ngf-multiple="true">
+    <i class="fa fa-plus"></i> Select Files
+  </button>
+</div>
+<div class="modal-body" style="overflow-y: scroll">
+  <a class="jstree-anchor" ng-show="!isLoading"><i class="fa fa-spinner loading"></i> Loading ...</a>
+  <div>
+    <div ng-repeat="item in listImages" class="list-images" ng-class="{active: imageSelected == item}" ng-click="selectImage(item)">
+      <div class="img-media" ng-style="{'background-image': 'url(\'' + item + '\')'}">
+        <div class="check-icon">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-click="uploadPic(picFile)">OK</button>
+  <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>

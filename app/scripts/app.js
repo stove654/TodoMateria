@@ -18,7 +18,8 @@ angular
     'ngTouch',
     'ui.bootstrap',
     'ui.router',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'ngFileUpload'
   ])
   .run(function ($rootScope, $state, $location, SessionService) {
 
@@ -41,12 +42,6 @@ angular
       {
         var shouldGoToMain = fromState.name === ""
           && toState.name !== "main.dashboard" ;
-
-        if (shouldGoToMain)
-        {
-          $state.go('main.dashboard');
-          event.preventDefault();
-        }
         return;
       }
 
