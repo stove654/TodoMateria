@@ -19,7 +19,7 @@ angular.module('resAdminApp')
     };
 
     api.createCategory = function (params) {
-      return $http.post(AppConfig.baseUrl + 'api/categories', $.param(params)).then(function(data) {
+      return $http.post(AppConfig.baseUrl + 'api/categories', params).then(function(data) {
         return data.data;
       });
     };

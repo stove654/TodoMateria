@@ -19,7 +19,8 @@ angular
     'ui.bootstrap',
     'ui.router',
     'LocalStorageModule',
-    'ngFileUpload'
+    'ngFileUpload',
+    'ui.utils.masks'
   ])
   .run(function ($rootScope, $state, $location, SessionService) {
 
@@ -85,8 +86,8 @@ angular
     $urlRouterProvider.otherwise('/main/dashboard');
 
     // Use x-www-form-urlencoded Content-Type
-    $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-    $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded';
+    $httpProvider.defaults.headers.post['Content-Type'] = 'application/json';
+    $httpProvider.defaults.headers.put['Content-Type'] = 'application/json';
     $httpProvider.defaults.headers.common['Content-Type'] = $httpProvider.defaults.headers.post['Content-Type'];
     $httpProvider.interceptors.push(function($q, localStorageService) {
       return {

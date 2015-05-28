@@ -17,7 +17,8 @@ angular.module('resAdminApp')
 
     function _init() {
       MenuFactory.getAllFoods().then(function (data) {
-        $scope.allFoods = data;
+        $scope.allFoods = data.data;
+        console.log($scope.allFoods)
       });
     }
     _init();

@@ -61,7 +61,7 @@
           <div class="actions btn-set">
             <button type="button" name="back" class="btn btn-default btn-circle" ng-click="goMenu()"><i class="fa fa-angle-left"></i> Back</button>
             <button class="btn btn-default btn-circle "><i class="fa fa-reply"></i> Reset</button>
-            <button class="btn green-haze btn-circle"><i class="fa fa-check"></i> Save</button>
+            <button class="btn green-haze btn-circle" ng-click="saveFood()"><i class="fa fa-check"></i> Save</button>
             <button class="btn green-haze btn-circle"><i class="fa fa-check-circle"></i> Save & Continue Edit</button>
             <div class="btn-group">
               <a class="btn yellow btn-circle" href="javascript:;" data-toggle="dropdown">
@@ -90,131 +90,138 @@
 
           <tabset>
             <tab heading="General">
-              <div class="form-body">
-                <table class="table table-bordered table-hover">
-                  <thead>
-                  <tr role="row" class="heading">
-                    <th width="15%">
-                      Image
-                    </th>
-                    <th width="85%">
-                      Label
-                    </th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <td>
-                      <a class="fancybox-button" data-rel="fancybox-button">
-                        <img class="img-responsive" src="./images/img1.png" alt="">
-                      </a>
-                    </td>
-                    <td>
-                      <input type="text" class="form-control" name="product[images][1][label]" value="Thumbnail image">
-                      <div id="tab_images_uploader_container" class="text-align-reverse margin-bottom-10">
-                        <button id="tab_images_uploader_pickfiles" class="btn yellow" ng-click="openMedia('lg')">
-                          <i class="fa fa-plus"></i> Select Files
-                        </button>
-                        <button type="button" id="tab_images_uploader_uploadfiles" class="btn green">
-                          <i class="fa fa-share"></i> Upload Files
-                          <input type="file" style="visibility: hidden; position: absolute; left: -9999px"/>
-                        </button>
-                      </div>
-                    </td>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-body">
+                    <table class="table table-bordered table-hover">
+                      <thead>
+                      <tr role="row" class="heading">
+                        <th width="15%">
+                          Image
+                        </th>
+                        <th width="85%">
+                          Label
+                        </th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                        <td>
+                          <a class="fancybox-button" data-rel="fancybox-button" ng-click="openMedia('lg')">
+                            <img class="img-responsive" ng-src="{{item.image}}" alt="">
+                          </a>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" placeholder="Thumbnail image" ng-model="item.imageThumbnail">
+                        </td>
 
-                  </tr>
-                  </tbody>
-                </table>
-              <div class="form-group">
-                <label class="col-md-2 control-label">Name: <span class="required">
+                      </tr>
+                      </tbody>
+                    </table>
+                    <div class="form-group">
+                      <label class="col-md-2 control-label">Name: <span class="required">
                         * </span>
-                </label>
-                <div class="col-md-10">
-                  <input type="text" class="form-control" name="product[name]" placeholder="">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-md-2 control-label">Price: <span class="required">
-                      * </span>
-                </label>
-                <div class="col-md-10">
-                  <input type="text" class="form-control" name="product[price]" placeholder="">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-md-2 control-label">Description:
-                </label>
-                <div class="col-md-10">
-                  <textarea class="form-control" name="product[description]"></textarea>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-md-2 control-label">Categories: <span class="required">
-                        * </span>
-                </label>
-                <div class="col-md-10">
-                  <div class="form-control height-auto">
-                    <div class="scroller" style="max-height: 150px; overflow-y: scroll;">
-                      <ul class="list-unstyled">
-                        <li>
-                          <label><input type="checkbox" name="product[categories][]" value="1">Mens</label>
-                        </li>
-                        <li>
-                          <label><input type="checkbox" name="product[categories][]" value="1">Football Shirts</label>
-                        </li>
-                        <li>
-                          <label><input type="checkbox" name="product[categories][]" value="1">Brands</label>
-                        </li>
-                        <li>
-                          <label><input type="checkbox" name="product[categories][]" value="1">Mens</label>
-                        </li>
-                        <li>
-                          <label><input type="checkbox" name="product[categories][]" value="1">Football Shirts</label>
-                        </li>
-                        <li>
-                          <label><input type="checkbox" name="product[categories][]" value="1">Brands</label>
-                        </li>
-                      </ul>
+                      </label>
+                      <div class="col-md-10">
+                        <input type="text" class="form-control" ng-model="item.name">
+                      </div>
                     </div>
-                  </div>
-                          <span class="help-block">
-                          select one or more categories </span>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-md-2 control-label">Available Date:
-                </label>
-                <div class="col-md-10">
-                  <div class="input-group input-large date-picker input-daterange" data-date="10/11/2012" data-date-format="mm/dd/yyyy">
-                    <input type="text" class="form-control" name="product[available_from]">
+                    <div class="form-group">
+                      <label class="col-md-2 control-label">Price: <span class="required">
+                      * </span>
+                      </label>
+                      <div class="col-md-10">
+                        <input type="text" class="form-control" ng-model="item.price" ng-pattern="/^[0-9\.]+$/" required ui-number-mask="0">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-2 control-label">Description:
+                      </label>
+                      <div class="col-md-10">
+                        <textarea class="form-control" ng-model="item.description"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-2 control-label">Categories: <span class="required">
+                        * </span>
+                      </label>
+                      <div class="col-md-10">
+                        <div class="form-control height-auto">
+                          <div class="scroller" style="max-height: 150px; overflow-y: scroll;">
+                            <ul class="list-unstyled list-categories">
+                              <li ng-repeat="data in categories">
+                                <label ng-click="addCategory(data._id)"><input type="radio" name="idCategory" value="{{$index}}">{{data.name}}</label>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <span class="help-block"> select one or more categories </span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-2 control-label">Available Date:
+                      </label>
+                      <div class="col-md-10">
+                        <div class="input-group input-large date-picker input-daterange" data-date="10/11/2012" data-date-format="mm/dd/yyyy">
+                          <input type="text" class="form-control" name="product[available_from]">
                             <span class="input-group-addon">
                             to </span>
-                    <input type="text" class="form-control" name="product[available_to]">
-                  </div>
+                          <input type="text" class="form-control" name="product[available_to]">
+                        </div>
                           <span class="help-block">
                           availability daterange. </span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-2 control-label">SKU:
+                      </label>
+                      <div class="col-md-10">
+                        <input type="text" class="form-control" name="product[sku]" placeholder="">
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label class="col-md-2 control-label">SKU:
-                </label>
-                <div class="col-md-10">
-                  <input type="text" class="form-control" name="product[sku]" placeholder="">
+                <div class="col-md-6">
+                  <div class="form-group create-options">
+                    <div class="control-label">
+                      Food options:
+                    </div>
+                    <div horizontal layout ng-repeat="item in item.options" style="margin-bottom: 10px">
+                      <input type="text" class="form-control" placeholder="name" ng-model="item.name">
+                      <input type="text" class="form-control" placeholder="price" ng-model="item.price">
+                      <button type="button" class="btn btn-danger" ng-click="deleteFoodOptions($index)"><i class="fa fa-minus"></i></button>
+                    </div>
+                    <div horizontal layout>
+                      <input type="text" class="form-control" placeholder="name" ng-model="option.name">
+                      <input type="text" class="form-control" placeholder="price" ng-model="option.price" ng-pattern="/^[0-9\.]+$/" required ui-number-mask="0">
+                      <button type="button" class="btn btn-danger" style="visibility: hidden"><i class="fa fa-minus"></i></button>
+                    </div>
+                    <div class="plus-add">
+                      <button type="button" class="btn btn-default" ng-click="addFoodOptions()" ng-disabled="!option.name.length"><i class="fa fa-plus"></i></button>
+                    </div>
+                  </div>
+
+                  <div class="form-group create-options">
+                    <div class="control-label">
+                      Discounts:
+                    </div>
+                    <div horizontal layout ng-repeat="item in item.discounts" style="margin-bottom: 10px">
+                      <input type="text" class="form-control" placeholder="name" ng-model="item.name">
+                      <input type="text" class="form-control" placeholder="amount" ng-model="item.amount">
+                      <button type="button" class="btn btn-danger" ng-click="deleteFoodDiscounts($index)"><i class="fa fa-minus"></i></button>
+                    </div>
+                    <div horizontal layout>
+                      <input type="text" class="form-control" placeholder="name" ng-model="discount.name">
+                      <input type="text" class="form-control" placeholder="amount" ng-model="discount.amount" ng-pattern="/^[0-9\.]+$/" required ui-number-mask="0">
+                      <button type="button" class="btn btn-danger" style="visibility: hidden"><i class="fa fa-minus"></i></button>
+                    </div>
+                    <div class="plus-add">
+                      <button type="button" class="btn btn-default" ng-click="addFoodDiscounts()" ng-disabled="!discount.name.length"><i class="fa fa-plus"></i></button>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <div class="form-group">
-                <label class="col-md-2 control-label">Status:
-                </label>
-                <div class="col-md-10">
-                  <select class="table-group-action-input form-control input-medium" name="product[status]">
-                    <option value="">Select...</option>
-                    <option value="1">Published</option>
-                    <option value="0">Not Published</option>
-                  </select>
-                </div>
-              </div>
-            </div>
             </tab>
             <tab heading="Images">Images</tab>
             <tab heading="Reviews">Reviews</tab>
