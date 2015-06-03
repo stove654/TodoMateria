@@ -60,7 +60,7 @@
           </div>
           <div class="actions btn-set">
             <button type="button" name="back" class="btn btn-default btn-circle" ng-click="goMenu()"><i class="fa fa-angle-left"></i> Back</button>
-            <button class="btn btn-default btn-circle "><i class="fa fa-reply"></i> Reset</button>
+            <button class="btn btn-default btn-circle" ng-click="resetItem()"><i class="fa fa-reply"></i> Reset</button>
             <button class="btn green-haze btn-circle" ng-click="saveFood()"><i class="fa fa-check"></i> Save</button>
             <button class="btn green-haze btn-circle"><i class="fa fa-check-circle"></i> Save & Continue Edit</button>
             <div class="btn-group">
@@ -119,64 +119,76 @@
                       </tbody>
                     </table>
                     <div class="form-group">
-                      <label class="col-md-2 control-label">Name: <span class="required">
+                      <div class="row">
+                        <label class="col-md-2 control-label">Name: <span class="required">
                         * </span>
-                      </label>
-                      <div class="col-md-10">
-                        <input type="text" class="form-control" ng-model="item.name">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="col-md-2 control-label">Price: <span class="required">
-                      * </span>
-                      </label>
-                      <div class="col-md-10">
-                        <input type="text" class="form-control" ng-model="item.price" ng-pattern="/^[0-9\.]+$/" required ui-number-mask="0">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="col-md-2 control-label">Description:
-                      </label>
-                      <div class="col-md-10">
-                        <textarea class="form-control" ng-model="item.description"></textarea>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="col-md-2 control-label">Categories: <span class="required">
-                        * </span>
-                      </label>
-                      <div class="col-md-10">
-                        <div class="form-control height-auto">
-                          <div class="scroller" style="max-height: 150px; overflow-y: scroll;">
-                            <ul class="list-unstyled list-categories">
-                              <li ng-repeat="data in categories">
-                                <label ng-click="addCategory(data._id)"><input type="radio" name="idCategory" value="{{$index}}">{{data.name}}</label>
-                              </li>
-                            </ul>
-                          </div>
+                        </label>
+                        <div class="col-md-10">
+                          <input type="text" class="form-control" ng-model="item.name">
                         </div>
-                        <span class="help-block"> select one or more categories </span>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="col-md-2 control-label">Available Date:
-                      </label>
-                      <div class="col-md-10">
-                        <div class="input-group input-large date-picker input-daterange" data-date="10/11/2012" data-date-format="mm/dd/yyyy">
-                          <input type="text" class="form-control" name="product[available_from]">
+                     <div class="row">
+                       <label class="col-md-2 control-label">Price: <span class="required">
+                      * </span>
+                       </label>
+                       <div class="col-md-10">
+                         <input type="text" class="form-control" ng-model="item.price" ng-pattern="/^[0-9\.]+$/" required ui-number-mask="0">
+                       </div>
+                     </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <label class="col-md-2 control-label">Description:
+                        </label>
+                        <div class="col-md-10">
+                          <textarea class="form-control" ng-model="item.description"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <label class="col-md-2 control-label">Categories: <span class="required">
+                        * </span>
+                        </label>
+                        <div class="col-md-10">
+                          <div class="form-control height-auto">
+                            <div class="scroller" style="max-height: 150px; overflow-y: scroll;">
+                              <ul class="list-unstyled list-categories">
+                                <li ng-repeat="data in categories">
+                                  <label ng-click="addCategory(data._id)"><input type="radio" name="categoryNumber"  ng-model="categoryNumber" ng-value="data">{{data.name}}</label>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                          <span class="help-block"> select one or more categories </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <label class="col-md-2 control-label">Available Date:
+                        </label>
+                        <div class="col-md-10">
+                          <div class="input-group input-large date-picker input-daterange" data-date="10/11/2012" data-date-format="mm/dd/yyyy">
+                            <input type="text" class="form-control" name="product[available_from]">
                             <span class="input-group-addon">
                             to </span>
-                          <input type="text" class="form-control" name="product[available_to]">
-                        </div>
+                            <input type="text" class="form-control" name="product[available_to]">
+                          </div>
                           <span class="help-block">
                           availability daterange. </span>
+                        </div>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="col-md-2 control-label">SKU:
-                      </label>
-                      <div class="col-md-10">
-                        <input type="text" class="form-control" name="product[sku]" placeholder="">
+                      <div class="row">
+                        <label class="col-md-2 control-label">SKU:
+                        </label>
+                        <div class="col-md-10">
+                          <input type="text" class="form-control" name="product[sku]" placeholder="">
+                        </div>
                       </div>
                     </div>
                   </div>

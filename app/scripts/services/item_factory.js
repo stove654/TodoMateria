@@ -18,12 +18,23 @@ angular.module('resAdminApp')
     };
 
     api.createFood = function (params) {
-      console.log(params);
       return $http.post(AppConfig.baseUrl + 'api/foods', params).then(function(data) {
         return data.data;
       });
     };
 
+    api.updateFood = function (params) {
+      console.log(params);
+      return $http.put(AppConfig.baseUrl + 'api/foods/' + params._id, params).then(function(data) {
+        return data.data;
+      });
+    };
+
+    api.getFood = function (id) {
+      return $http.get(AppConfig.baseUrl + 'api/foods/' + id).then(function(data) {
+        return data.data;
+      });
+    };
 
     return api;
   });

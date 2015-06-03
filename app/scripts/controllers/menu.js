@@ -8,7 +8,7 @@
  * Controller of the resAdminApp
  */
 angular.module('resAdminApp')
-  .controller('MenuCtrl', function ($scope, $modal, MenuFactory, $state) {
+  .controller('MenuCtrl', function ($scope, $modal, MenuFactory, $state, ItemFactory) {
 
     $scope.addNewCategory = false;
     $scope.category = {};
@@ -40,6 +40,10 @@ angular.module('resAdminApp')
           $scope.allFoods.splice(index, 1);
         }, function(error) {
         });
+    };
+
+    $scope.detailFood = function (item) {
+      $state.go('main.item', {Id: item._id});
     };
 
     $scope.createFood = function () {

@@ -13,13 +13,13 @@ angular.module('resAdminApp')
     var api = {};
 
     api.login = function (params) {
-      return $http.post(AppConfig.baseUrl + 'auth/local', $.param(params)).then(function(data) {
+      return $http.post(AppConfig.baseUrl + 'auth/local', params).then(function(data) {
         return data.data;
       });
     };
 
     api.create = function (params) {
-      return $http.post(AppConfig.baseUrl + 'api/users', $.param(params)).then(function(data) {
+      return $http.post(AppConfig.baseUrl + 'api/users', params).then(function(data) {
         return data.data;
       });
     };

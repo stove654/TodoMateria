@@ -157,3 +157,21 @@ body.page-md {
 .create-options .plus-add button {
   width: 64px;
 }
+.item-in-cat {
+  position: relative;
+  background-position: center center;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-repeat: no-repeat;
+  height: 100px;
+}
+.item-view {
+  width: 16.66666667%;
+  float: left;
+  padding: 8px;
+}
+.info-basic-food {
+  background-color: rgba(32, 43, 54, 0.5);
+  color: #fff;
+  padding: 8px;
+}

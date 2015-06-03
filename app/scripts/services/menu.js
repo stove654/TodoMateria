@@ -18,6 +18,20 @@ angular.module('resAdminApp')
         });
     };
 
+    api.getAllCategories = function () {
+      return $http.get(AppConfig.baseUrl + 'api/categories')
+        .then(function(data) {
+          return data.data;
+        });
+    };
+
+    api.getFoodByCategory = function (id) {
+      return $http.get(AppConfig.baseUrl + 'api/foods/category/' + id)
+        .then(function(data) {
+          return data.data;
+        });
+    };
+
     api.createCategory = function (params) {
       return $http.post(AppConfig.baseUrl + 'api/categories', params).then(function(data) {
         return data.data;

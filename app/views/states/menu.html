@@ -94,7 +94,15 @@
               <tab-heading>
                 {{item.name}} <i class="glyphicon glyphicon-remove" ng-click="deleteCategory(item._id, $index)"></i>
               </tab-heading>
-              Justified content
+              <div class="item-view" ng-repeat="item in item.foods">
+                <div class="item-in-cat" ng-style="{'background-image': 'url(\'' + item.image + '\')'}" vertical layout ng-click="detailFood(item)">
+                  <div flex></div>
+                  <div class="info-basic-food">
+                    <div class="name-food">{{item.name}}</div>
+                    <div class="price-food">{{item.price | currency}}</div>
+                  </div>
+                </div>
+              </div>
             </tab>
 
             <li class="add-new-category">

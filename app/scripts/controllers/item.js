@@ -8,12 +8,8 @@
  * Controller of the resAdminApp
  */
 angular.module('resAdminApp')
-  .controller('ItemCtrl', function ($scope, $state, $modal, ItemFactory) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('ItemCtrl', function ($scope, $state, $modal, ItemFactory, $stateParams) {
+
     $scope.item = {};
     $scope.item.image = './images/no_image.jpg';
     $scope.item.options = [];
@@ -31,8 +27,23 @@ angular.module('resAdminApp')
       ItemFactory.getCategory().then(function (data) {
         $scope.categories = data;
       });
+      if ($stateParams.Id != 'new-food') {
+        ItemFactory.getFood($stateParams.Id).then(function (data) {
+          formatItem(data);
+          $scope.item = data;
+        });
+      }
     }
     _init();
+
+    function formatItem(item) {
+      for (var i = 0; i < $scope.categories.length; i++) {
+        if (item.foodCategoryId == $scope.categories[i]._id) {
+          $scope.categoryNumber = $scope.categories[i];
+          break;
+        }
+      }
+    }
 
 
     $scope.goMenu = function () {
@@ -57,11 +68,20 @@ angular.module('resAdminApp')
     };
 
     $scope.saveFood = function () {
-      ItemFactory.createFood(angular.copy($scope.item))
-        .then(function(data) {
-          console.log(data);
-        }, function(error) {
-        });
+      if ($stateParams.Id == 'new-food') {
+        ItemFactory.createFood(angular.copy($scope.item))
+          .then(function(data) {
+            $scope.goMenu();
+          }, function(error) {
+          });
+      } else {
+        ItemFactory.updateFood(angular.copy($scope.item))
+          .then(function(data) {
+            $scope.goMenu();
+          }, function(error) {
+          });
+      }
+
     };
 
     $scope.addCategory = function (id) {
@@ -89,6 +109,29 @@ angular.module('resAdminApp')
 
     $scope.deleteFoodOptions = function (index) {
       $scope.item.discounts.splice(index, 1);
+    };
+
+    $scope.saveAndContinue = function () {
+      ItemFactory.createFood(angular.copy($scope.item))
+        .then(function(data) {
+          $scope.resetItem();
+        }, function(error) {
+        });
+    };
+
+    $scope.resetItem = function () {
+      $scope.item = {};
+      $scope.item.image = './images/no_image.jpg';
+      $scope.item.options = [];
+      $scope.item.discounts = [];
+      $scope.option = {
+        price: 0
+      };
+
+      $scope.discount = {
+        amount: 0,
+        percent: 0
+      };
     }
 
   });

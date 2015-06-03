@@ -76,7 +76,7 @@ angular
         controller: 'MenuCtrl'
       })
       .state('main.item', {
-        url: '/menu/:itemId',
+        url: '/menu/:Id',
         templateUrl: 'views/states/item.html',
         data : {requireLogin : true },
         controller: 'ItemCtrl'
