@@ -175,3 +175,13 @@ body.page-md {
   color: #fff;
   padding: 8px;
 }
+.table-tax-discount td {
+  line-height: 34px !important;
+}
+.table-tax-discount tr th {
+  line-height: 34px !important;
+}
+.input-check-tax input {
+  transition: none !important;
+  -webkit-transition: none !important;
+}

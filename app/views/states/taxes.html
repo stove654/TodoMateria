@@ -1,0 +1,233 @@
+<div class="page-content">
+  <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+  <div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+          <h4 class="modal-title">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          Widget settings form goes here
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn blue">Save changes</button>
+          <button type="button" class="btn default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+  <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+  <!-- BEGIN PAGE HEADER-->
+
+  <!-- BEGIN PAGE BREADCRUMB -->
+  <ul class="page-breadcrumb breadcrumb">
+    <li>
+      <a>Home</a>
+      <i class="fa fa-circle"></i>
+    </li>
+    <li>
+      <a>Taxes</a>
+      <i class="fa fa-circle"></i>
+    </li>
+  </ul>
+  <!-- END PAGE BREADCRUMB -->
+  <!-- END PAGE HEADER-->
+  <!-- BEGIN PAGE CONTENT-->
+  <div class="row">
+    <div class="col-md-12">
+      <!-- Begin: life time stats -->
+      <div class="portlet light all-menu">
+        <div class="portlet-title">
+          <div class="caption">
+            <i class="icon-book-open font-green-sharp"></i>
+            <span class="caption-subject font-green-sharp bold uppercase">Taxes</span>
+            <span class="caption-helper">manage taxes...</span>
+          </div>
+          <div class="actions">
+            <a class="btn btn-circle btn-default" ng-click="createFood()">
+              <i class="fa fa-plus"></i>
+								<span class="hidden-480">
+								New Item </span>
+            </a>
+            <div class="btn-group">
+              <a class="btn btn-default btn-circle" href="javascript:;" data-toggle="dropdown">
+                <i class="fa fa-share"></i>
+									<span class="hidden-480">
+									Tools </span>
+                <i class="fa fa-angle-down"></i>
+              </a>
+              <ul class="dropdown-menu pull-right">
+                <li>
+                  <a href="javascript:;">
+                    Export to Excel </a>
+                </li>
+                <li>
+                  <a href="javascript:;">
+                    Export to CSV </a>
+                </li>
+                <li>
+                  <a href="javascript:;">
+                    Export to XML </a>
+                </li>
+                <li class="divider">
+                </li>
+                <li>
+                  <a href="javascript:;">
+                    Print Invoices </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="portlet-body">
+          <tabset>
+            <tab class="tabs-category">
+              <tab-heading>
+                Taxes
+              </tab-heading>
+              <div class="col-md-5">
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputEmail3" placeholder="Name" ng-model="item.name">
+                    </div>
+                  </div>
+                  <div class="form-group input-check-tax">
+                    <label class="col-sm-2 control-label">Amount</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" placeholder="Amount" ng-model="item.amount" ng-show="checkAmount == 1" ng-pattern="/^[0-9\.]+$/" required ui-number-mask="0">
+                      <input type="text" class="form-control" placeholder="Percent" ng-model="item.percent" ng-show="checkAmount == 2" ng-pattern="/^[0-9\.]+$/" required ui-number-mask="0">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="btn-group col-sm-offset-2 col-sm-10" role="group" aria-label="...">
+                      <button type="button" class="btn btn-default" ng-click="amountCheck(1)" ng-class="{active: checkAmount == 1}">Amount</button>
+                      <button type="button" class="btn btn-default" ng-click="amountCheck(2)" ng-class="{active: checkAmount == 2}">Percent</button>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="button" class="btn btn btn-success" ng-click="createTax()">Create</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="col-md-7">
+                <div class="table-tax-discount" data-example-id="condensed-table">
+                  <table class="table table-condensed">
+                    <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Tax name</th>
+                      <th>Amount</th>
+                      <th>Status</th>
+                      <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in taxes">
+                      <th scope="row">{{$index}}</th>
+                      <td>{{item.name}}</td>
+                      <td>
+                        <span ng-if="item.amount">{{item.amount | currency}}</span>
+                        <span ng-if="item.percent">{{item.percent}}%</span>
+                      </td>
+                      <td>On</td>
+                      <td>
+                        <a class="btn btn-icon-only red">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                        <a class="btn btn-icon-only purple">
+                          <i class="fa fa-times"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </tab>
+            <tab class="tabs-category">
+              <tab-heading>
+                Discounts
+              </tab-heading>
+              <div class="col-md-5">
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputEmail3" placeholder="Name" ng-model="item.name">
+                    </div>
+                  </div>
+                  <div class="form-group input-check-tax">
+                    <label class="col-sm-2 control-label">Amount</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" placeholder="Amount" ng-model="item.amount" ng-show="checkAmount == 1" ng-pattern="/^[0-9\.]+$/" required ui-number-mask="0">
+                      <input type="text" class="form-control" placeholder="Percent" ng-model="item.percent" ng-show="checkAmount == 2" ng-pattern="/^[0-9\.]+$/" required ui-number-mask="0">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="btn-group col-sm-offset-2 col-sm-10" role="group" aria-label="...">
+                      <button type="button" class="btn btn-default" ng-click="amountCheck(1)" ng-class="{active: checkAmount == 1}">Amount</button>
+                      <button type="button" class="btn btn-default" ng-click="amountCheck(2)" ng-class="{active: checkAmount == 2}">Percent</button>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="button" class="btn btn btn-success" ng-click="createDiscount()">Create</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="col-md-7">
+                <div class="table-tax-discount" data-example-id="condensed-table">
+                  <table class="table table-condensed">
+                    <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Discount name</th>
+                      <th>Amount</th>
+                      <th>Status</th>
+                      <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in discounts">
+                      <th scope="row">{{$index}}</th>
+                      <td>{{item.name}}</td>
+                      <td>
+                        <span ng-if="item.amount">{{item.amount | currency}}</span>
+                        <span ng-if="item.percent">{{item.percent}}%</span>
+                      </td>
+                      <td>On</td>
+                      <td>
+                        <a class="btn btn-icon-only red">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                        <a class="btn btn-icon-only purple">
+                          <i class="fa fa-times"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </tab>
+          </tabset>
+
+
+        </div>
+      </div>
+      <!-- End: life time stats -->
+    </div>
+  </div>
+  <!-- END PAGE CONTENT-->
+</div>
