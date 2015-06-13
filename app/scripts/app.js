@@ -87,6 +87,12 @@ angular
         data : {requireLogin : true },
         controller: 'TaxesCtrl'
       })
+      .state('main.tables', {
+        url: '/tables',
+        templateUrl: 'views/states/tables.html',
+        data : {requireLogin : true },
+        controller: 'TablesCtrl'
+      })
     ;
 
     $urlRouterProvider.otherwise('/main/dashboard');
