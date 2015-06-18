@@ -20,7 +20,8 @@ angular
     'ui.router',
     'LocalStorageModule',
     'ngFileUpload',
-    'ui.utils.masks'
+    'ui.utils.masks',
+    'btford.socket-io'
   ])
   .run(function ($rootScope, $state, $location, SessionService) {
 
